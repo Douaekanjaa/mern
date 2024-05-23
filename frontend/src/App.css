@@ -1,0 +1,143 @@
+body{
+     background-color: white;
+     margin: 0 !important;
+     padding: 0 !important;
+}
+
+.no-hover:hover {
+     color: inherit !important; /* To maintain the default text color */
+     background-color: transparent !important; /* To remove any background color */
+     pointer-events: none !important; /* To disable pointer events */
+     cursor: default !important; /* To change the cursor to default */
+ }
+ 
+
+ .gradient-custom-2 {
+     /* fallback for old browsers */
+     background: #fccb90;
+   
+     /* Chrome 10-25, Safari 5.1-6 */
+     background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+   
+     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+   }
+   
+   @media (min-width: 768px) {
+     .gradient-form {
+       height: 100vh !important;
+     }
+   }
+   @media (min-width: 769px) {
+     .gradient-custom-2 {
+       border-top-right-radius: .3rem;
+       border-bottom-right-radius: .3rem;
+     }
+   }
+
+
+
+/* src/components/AutocompleteSearch.css */
+.autocomplete-search {
+  position: relative;
+  width: 300px;
+}
+
+.autocomplete-search input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.autocomplete-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: #eee;
+}
+
+
+.SearchButton {
+  position: relative;
+  border: none;
+  background-color: white;
+  color: #212121;
+  padding: 15px; /* Reduce padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* Decrease font size */
+  font-weight: 600;
+  gap: 10px;
+  border-radius: 10px;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adjust box shadow */
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.SearchButton::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(112, 216, 128);
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  transform: translate(-100%, 100%);
+  border-radius: inherit;
+}
+
+.SearchButton svg {
+  fill: rgb(112, 216, 128);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.SearchButton:hover::before {
+  animation: shakeBack 0.6s forwards;
+}
+
+.SearchButton:hover svg {
+  fill: white;
+  scale: 1.3;
+}
+
+.SearchButton:active {
+  box-shadow: none;
+}
+
+@keyframes shakeBack {
+  0% {
+    transform: translate(-100%, 100%);
+  }
+
+  50% {
+    transform: translate(20%, -20%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+.hero1 {
+  background-image: url('../public/images/hero1.png');
+  background-position: center;
+}
