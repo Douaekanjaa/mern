@@ -1,10 +1,10 @@
 import express from 'express';
 import multer from 'multer';
-import { getAllPros, registerPro, loginPro, logoutPro } from '../controllers/pro.controller.js';
+import {  registerPro, loginPro, logoutPro } from '../controllers/pro.controller.js';
 
 const router = express.Router();
 
-router.get('/pros', getAllPros);
+
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

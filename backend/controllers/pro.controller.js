@@ -108,25 +108,6 @@ const logoutPro = (req, res) => {
     res.json({ message: 'Logged out successfully' });
 };
 
-const getAllPros = async (req, res) => {
-    try {
-        // Fetch professionals with populated location (city_name) and categories
-        const pros = await Pro.find()
-            .populate({
-                path: 'location_id',
-                select: 'city_name'
-            })
-            .populate({
-                path: 'categories',
-                select: 'name'
-            });
 
-        // Return the professionals as a JSON response with city names and category names
-        res.status(200).json(pros);
-    } catch (error) {
-        // If an error occurs, return an error response
-        res.status(500).json({ message: error.message });
-    }
-};
 
-export { getAllPros, loginPro, logoutPro };
+export { loginPro, logoutPro };

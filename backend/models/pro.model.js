@@ -8,6 +8,10 @@ const ProSchema = new mongoose.Schema({
     gender: { type: String, required: true },
     date_of_birth: { type: Date, required: true },
     address: { type: String },
+    location_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Location' // Reference the Location model
+    },
     phone_number: { type: String, required: true },
     photo: { type: String, required: true },
     bio: { type: String },
