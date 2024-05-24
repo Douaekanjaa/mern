@@ -1,18 +1,24 @@
 // Login.jsx
+
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthProContext } from '../../context/AuthProContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuthContext();
+    const { login } = useAuthProContext();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post("http://localhost:3000/api/pros/login", { email, password });
             login(response.data.user);
+            if (response.status === 200) {
+                navigate("/profile");
+            }
         } catch (error) {
             console.error('Login error:', error.message);
         }

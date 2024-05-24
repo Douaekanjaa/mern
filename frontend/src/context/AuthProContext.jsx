@@ -1,38 +1,29 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+// context/AuthProContext.jsx
 
-const AuthContext = createContext();
+import { createContext, useContext, useState } from "react";
 
-export const useAuthContext = () => useContext(AuthContext);
+export const AuthProContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [authUser, setAuthUser] = useState(null);
+export const useAuthProContext = () => {
+  return useContext(AuthProContext);
+};
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('authUser'));
-        if (user) {
-            setAuthUser(user);
-        }
-    }, []);
+export const AuthProContextProvider = ({ children }) => {
+  const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("pro-user")) || null);
 
-    const login = (userData) => {
-        setAuthUser(userData);
-        localStorage.setItem('authUser', JSON.stringify(userData));
-    };
+  const login = (userData) => {
+    setAuthUser(userData);
+    localStorage.setItem("pro-user", JSON.stringify(userData));
+  };
 
-    const logout = async () => {
-        try {
-            await axios.post('/api/pros/logout');
-            setAuthUser(null);
-            localStorage.removeItem('authUser');
-        } catch (error) {
-            console.error('Logout error:', error.message);
-        }
-    };
+  const logout = () => {
+    setAuthUser(null);
+    localStorage.removeItem("pro-user");
+  };
 
-    return (
-        <AuthContext.Provider value={{ authUser, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthProContext.Provider value={{ authUser, login, logout }}>
+      {children}
+    </AuthProContext.Provider>
+  );
 };

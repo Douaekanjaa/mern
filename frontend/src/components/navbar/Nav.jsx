@@ -53,7 +53,7 @@ const Nav = () => {
                                     <a className="text-gray-800 transition hover:text-gray-500/75" href="#"> Contact US </a>
                                 </li>
                                 <li className="md:mx-2 ">
-                                    <Link className="text-gray-800 transition hover:text-gray-500/75" to="/become-a-pro"> Become a Pro </Link>
+                                    <Link className="text-gray-800 transition hover:text-gray-500/75" to="/become-pro"> Become a Pro </Link>
                                 </li>
                                
                             </ul>
@@ -124,7 +124,7 @@ const Nav = () => {
                             <a className="block text-gray-800 transition hover:text-gray-700" href="#"> Contact US </a>
                         </li>
                         <li>
-                            <Link className="block text-gray-800 transition hover:text-gray-700" to="/become-a-pro"> Become a Pro </Link>
+                            <Link className="block text-gray-800 transition hover:text-gray-700" to="/become-pro"> Become a Pro </Link>
                         </li>
                         {authUser ? (
                             <li>

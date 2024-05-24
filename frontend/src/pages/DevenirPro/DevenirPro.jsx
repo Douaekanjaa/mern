@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoginPro from "./LoginPro"
 
 const DevenirPro = () => {
     const [formData, setFormData] = useState({
@@ -305,6 +306,8 @@ const DevenirPro = () => {
                     Register
                 </button>
             </form>
+
+            <a href="/pro-login">You have an account log in</a>
         </div>
     );
 };

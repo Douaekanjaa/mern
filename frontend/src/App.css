@@ -141,3 +141,54 @@ body{
   background-image: url('../public/images/hero1.png');
   background-position: center;
 }
+
+
+
+/* styles.css */
+
+.pro-nav {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.pro-nav__content {
+  display: flex;
+  align-items: center;
+}
+
+.pro-nav__welcome {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.pro-nav__logout {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.profile {
+  padding: 2rem;
+}
+
+.profile h1 {
+  margin-bottom: 1rem;
+}
+
+.profile p {
+  margin: 0.5rem 0;
+}
+
+.profile__photo {
+  margin-top: 1rem;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
