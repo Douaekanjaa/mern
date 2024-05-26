@@ -89,4 +89,20 @@ router.get('/all', async (req, res) => {
     }
 });
 
+
+router.post('/filter', async (req, res) => {
+    const { categoryIds } = req.body;
+    console.log('Received Category IDs:', categoryIds);
+    
+    try {
+      const categories = await Category.find({ _id: { $in: categoryIds } });
+      console.log('Filtered Categories:', categories);
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error.message);
+      res.status(500).json({ error: 'Failed to fetch categories' });
+    }
+  });
+  
+
 export default router;

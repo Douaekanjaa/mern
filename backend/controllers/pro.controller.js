@@ -20,7 +20,6 @@ const upload = multer({ storage });
 
 const registerPro = async (req, res) => {
   try {
-      // Destructure request body
       const {
           first_name,
           last_name,
@@ -29,48 +28,53 @@ const registerPro = async (req, res) => {
           confirmPassword,
           location_id,
           phone_number,
+          photo,
           categories,
-          availability, // Remove this line
+          availability,
           cv,
           date_of_birth,
+          address,
+          bio,
           gender
       } = req.body;
 
-      // Check if passwords match
       if (password !== confirmPassword) {
           return res.status(400).json({ message: 'Passwords do not match' });
       }
 
-      // Generate salt and hash password
-      const salt = await bcrypt.genSalt(10); // Generate salt
-      const hashedPassword = await bcrypt.hash(password, salt); // Hash password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
 
-      // Convert categories and availability to arrays if they're not already
       const parsedCategories = Array.isArray(categories) ? categories : [categories];
+      let parsedAvailability;
+      try {
+          parsedAvailability = JSON.parse(availability);
+      } catch (error) {
+          console.error("Error parsing availability:", error.message);
+          return res.status(400).json({ message: "Invalid availability format" });
+      }
 
-      // Handle file upload
       let photoUrl = null;
       if (req.file) {
-          console.log("Uploading photo to Cloudinary...");
-          const result = await cloudinary.uploader.upload(req.file.path, {
-              folder: 'profiles',
-          });
+          const result = await cloudinary.uploader.upload(req.file.path, { folder: 'profiles' });
           photoUrl = result.secure_url;
-          console.log("Uploaded photo URL:", photoUrl);
       }
 
       const newPro = new Pro({
           first_name,
           last_name,
           email,
-          password: hashedPassword, // Store hashed password
+          gender,
+          password: hashedPassword,
           location_id,
           phone_number,
           photo: photoUrl,
-          categories: parsedCategories, // Use parsedCategories
-          cv,
+          categories: parsedCategories,
+          bio,
+          address,
+          availability: parsedAvailability,
           date_of_birth,
-          gender
+          cv
       });
 
       await newPro.save();
@@ -83,24 +87,22 @@ const registerPro = async (req, res) => {
 };
 
 
-export { registerPro };
 
 const loginPro = async (req, res) => {
-  const { email, password } = req.body;
+    const { email, password } = req.body;
 
-  try {
-      const user = await Pro.findOne({ email });
-      if (!user) return res.status(400).json({ message: 'Email or password is wrong' });
+    try {
+        const user = await Pro.findOne({ email });
+        if (!user) return res.status(400).json({ message: 'Email or password is wrong' });
 
-      // Compare hashed password with entered password
-      const validPass = await bcrypt.compare(password, user.password);
-      if (!validPass) return res.status(400).json({ message: 'Invalid password' });
+        const validPass = await bcrypt.compare(password, user.password);
+        if (!validPass) return res.status(400).json({ message: 'Invalid password' });
 
-      generateTokenAndSetCookie(user._id, res);
-      res.json({ user });
-  } catch (error) {
-      res.status(500).json({ message: error.message });
-  }
+        generateTokenAndSetCookie(user._id, res);
+        res.json({ user });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 const logoutPro = (req, res) => {
@@ -108,6 +110,50 @@ const logoutPro = (req, res) => {
     res.json({ message: 'Logged out successfully' });
 };
 
+const updatePro = async (req, res) => {
+    const { first_name, last_name, email, phone_number, address, rate, bio, categories, availability } = req.body;
+    let updatedFields = { first_name, last_name, email, phone_number, address, rate, bio };
+
+    if (categories) {
+        updatedFields.categories = Array.isArray(categories) ? categories : [categories];
+    }
+
+    if (availability) {
+        updatedFields.availability = JSON.parse(availability); // Assuming availability is passed as a JSON string
+    }
+
+    if (req.files) {
+        if (req.files.photo) {
+            const photoResult = await cloudinary.uploader.upload(req.files.photo[0].path, {
+                folder: 'profiles',
+            });
+            updatedFields.photo = photoResult.secure_url;
+        }
+        if (req.files.coverPhoto) {
+            const coverResult = await cloudinary.uploader.upload(req.files.coverPhoto[0].path, {
+                folder: 'covers',
+            });
+            updatedFields.coverPhoto = coverResult.secure_url;
+        }
+    }
+
+    try {
+        const user = await Pro.findByIdAndUpdate(req.user._id, updatedFields, { new: true })
+            .populate({
+                path: 'location_id',
+                select: 'city_name'
+            })
+            .populate({
+                path: 'categories',
+                select: 'name'
+            });
+
+        // Return the populated user object
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 
-export { loginPro, logoutPro };
+export { registerPro, loginPro, logoutPro, updatePro };

@@ -17,8 +17,11 @@ const ProSchema = new mongoose.Schema({
     bio: { type: String },
     categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
     availability: [{
-        day: { type: String, required: true },
-        hours: { type: String, required: true }
+        day: String,
+        hours: [{
+          hour: String,
+          available: Boolean
+        }]
     }],
     cv: { type: String, required: true },
     rate: { type: Number, default: 0 }

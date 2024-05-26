@@ -65,8 +65,9 @@ const DevenirPro = () => {
     const handleAvailabilityChange = (day, hour) => {
         const updatedAvailability = [...formData.availability];
         const dayIndex = updatedAvailability.findIndex((item) => item.day === day);
+    
         if (dayIndex !== -1) {
-            const hourIndex = updatedAvailability[dayIndex].hours.findIndex((item) => item.hour === hour);
+            const hourIndex = updatedAvailability[dayIndex].hours.findIndex((h) => h.hour === hour);
             if (hourIndex !== -1) {
                 updatedAvailability[dayIndex].hours[hourIndex].available = !updatedAvailability[dayIndex].hours[hourIndex].available;
             } else {
@@ -75,19 +76,26 @@ const DevenirPro = () => {
         } else {
             updatedAvailability.push({ day, hours: [{ hour, available: true }] });
         }
+    
         setFormData({ ...formData, availability: updatedAvailability });
     };
-
+    
     const handleNotAvailableChange = (day) => {
         const updatedAvailability = [...formData.availability];
         const dayIndex = updatedAvailability.findIndex((item) => item.day === day);
+    
         if (dayIndex !== -1) {
-            updatedAvailability[dayIndex].hours = [{ hour: "not-available", available: true }];
+            updatedAvailability[dayIndex].hours = [{ hour: "not-available", available: false }];
         } else {
-            updatedAvailability.push({ day, hours: [{ hour: "not-available", available: true }] });
+            updatedAvailability.push({ day, hours: [{ hour: "not-available", available: false }] });
         }
+    
         setFormData({ ...formData, availability: updatedAvailability });
     };
+    
+      
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -100,6 +108,8 @@ const DevenirPro = () => {
                     });
                 } else if (key === "photo") {
                     formDataToSend.append(key, formData[key]);
+                } else if (key === "availability") {
+                    formDataToSend.append(key, JSON.stringify(formData[key])); // Stringify availability
                 } else {
                     formDataToSend.append(key, formData[key]);
                 }
@@ -121,9 +131,13 @@ const DevenirPro = () => {
                 }
             }
         } catch (error) {
+            console.log(formData.availability);
+            console.log(JSON.stringify(formData.availability));
+    
             console.error("Registration error:", error.message, error.response?.data);
         }
     };
+    
     
 
     return (
