@@ -1,56 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import CategoryCard from './CategoryCard';
 
-export default function Categories() {
+const Categories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/category/all');
+        setCategories(response.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error.message);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
-    <div>
-      <div className="block rounded-lg bg-white shadow-secondary-1 dark:bg-surface-dark">
-        <a href="#!">
-          <img
-            className="rounded-t-lg"
-            src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-            alt=""
-          />
-        </a>
-        <div className="p-4 text-sm text-surface dark:text-white">
-          <h5 className="mb-1 text-lg font-medium leading-tight">Card title</h5>
-          <p className="mb-2 text-base">
-            tttt
-          </p>
-          <button
-            type="button"
-            className="inline-block rounded bg-primary px-4 pb-1.5 pt-1.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-            data-twe-ripple-init
-            data-twe-ripple-color="light"
-          >
-            Button
-          </button>
+    <section className="py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-extrabold text-lime-800 text-center mb-6">Discover Our Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {categories.map(category => (
+            <CategoryCard key={category._id} category={category} />
+          ))}
         </div>
       </div>
-      <div className="block rounded-lg bg-white shadow-secondary-1 dark:bg-surface-dark">
-        <a href="#!">
-          <img
-            className="rounded-t-lg"
-            src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-            alt=""
-          />
-        </a>
-        <div className="p-4 text-sm text-surface dark:text-white">
-          <h5 className="mb-1 text-lg font-medium leading-tight">Card title</h5>
-          <p className="mb-2 text-base">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <button
-            type="button"
-            className="inline-block rounded bg-primary px-4 pb-1.5 pt-1.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-            data-twe-ripple-init
-            data-twe-ripple-color="light"
-          >
-            Button
-          </button>
-        </div>
-      </div>
-
-    </div>
+    </section>
   );
-}
+};
+
+export default Categories;

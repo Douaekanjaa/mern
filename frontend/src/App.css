@@ -1,5 +1,5 @@
 body{
-     background-color: white;
+     background-color: white !important;
      margin: 0 !important;
      padding: 0 !important;
 }
@@ -41,6 +41,10 @@ body{
 .autocomplete-search {
   position: relative;
   width: 300px;
+
+}
+.search12{
+  background-color: #ffffffe8 !important;
 }
 
 .autocomplete-search input {
@@ -77,7 +81,7 @@ body{
 .SearchButton {
   position: relative;
   border: none;
-  background-color: white;
+  background-color: white !important;
   color: #212121;
   padding: 15px; /* Reduce padding */
   display: flex;
@@ -139,7 +143,7 @@ body{
 
 .hero1 {
   background-image: url('../public/images/hero1.png');
-  background-position: center;
+  background-position: top;
 }
 
 
@@ -193,3 +197,23 @@ body{
   height: 150px;
   border-radius: 50%;
 }
+
+
+.devenirprobackground{
+background-image: url("../public/images/devenirprobackground.png");
+background-position: top;
+
+background-repeat: no-repeat;
+background-blend-mode: lighten;
+width: 80% !important;
+
+}
+.hd{
+  width: 60% !important;
+  
+}
+.devenirprobackground2{
+  background-color: #ebefe1;
+  
+  }
+  

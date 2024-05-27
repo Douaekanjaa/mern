@@ -29,13 +29,16 @@ const AutocompleteSearch = ({ onSelectCategory }) => {
       console.error('No category selected');
     }
   };
-
+{/* <div className={"flex hero1 justify-center items-center h-screen"}>
+      <AutocompleteSearch onSelectCategory={handleSelectCategory} />
+    </div> */}
   return (
-    <Stack spacing={2} sx={{ width: 390 }}>
-      <Stack direction="row" alignItems="center">
+    <Stack  spacing={2} sx={{ width: 390 }}>
+      <Stack   direction="row" alignItems="center">
         <Autocomplete
           id="free-solo-demo"
-          style={{ width: "370px" }}
+          className='search12 border rounded'
+          style={{ width: "400px" }}
           freeSolo
           options={categories.map((category) => category.name)}
           renderInput={(params) => <TextField {...params} label="Search for a category" />}

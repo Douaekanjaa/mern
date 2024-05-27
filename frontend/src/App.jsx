@@ -25,7 +25,7 @@ function App() {
                 <Route path="/become-a-pro" element={<DevenirPro />} />
                 <Route path="/pro-login" element={<LoginPro />} />
                 <Route path="/profile" element={<ProProfile />} />
-
+                
             </Routes>
             <Toaster />
         </div>
