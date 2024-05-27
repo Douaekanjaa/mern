@@ -7,6 +7,7 @@ import DevenirPro from "./pages/DevenirPro/DevenirPro";
 import LoginPro from "./pages/DevenirPro/LoginPro";
 import BecomePro from "./pages/DevenirPro/BecomePro";
 import ProProfile from "./pages/pro/ProProfile";
+import CatById from "./components/Categories/CatById"
 
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/become-a-pro" element={<DevenirPro />} />
                 <Route path="/pro-login" element={<LoginPro />} />
                 <Route path="/profile" element={<ProProfile />} />
+                <Route path="/category/:categoryId" element={<CatById />} />
                 
             </Routes>
             <Toaster />
