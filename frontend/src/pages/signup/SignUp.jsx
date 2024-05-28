@@ -72,131 +72,122 @@ const SignUp = () => {
 
 
     return (
-        <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-            <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-                <h1 className='text-3xl font-semibold text-center text-gray-300'>
-                    Sign Up <span className='text-blue-500'> </span>
+        <div className="flex w-screen justify-center items-center min-h-screen bg-gray-100">
+            <div className="max-w-xl w-full px-6 py-8 bg-white shadow-md rounded-lg">
+                <h1 className="text-3xl font-semibold text-center text-lime-700 mb-8">
+                    Sign Up
                 </h1>
-
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label className='label p-2'>
-                            <span className='text-base label-text'>First Name</span>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            First Name
                         </label>
                         <input
-                            type='text'
-                            placeholder='Enter your First name'
-                            className='w-full input input-bordered  h-10'
-                            name='first_name'
+                            type="text"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Enter your First name"
+                            name="first_name"
                             value={inputs.first_name}
                             onChange={handleChange}
                         />
                     </div>
-                   
-                    <div>
-                        <label className='label p-2 '>
-                            <span className='text-base label-text'>Last Name</span>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Last Name
                         </label>
                         <input
-                            type='text'
-                            placeholder='Enter Your Last Name'
-                            className='w-full input input-bordered h-10'
-                            name='last_name'
+                            type="text"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Enter your Last name"
+                            name="last_name"
                             value={inputs.last_name}
                             onChange={handleChange}
                         />
                     </div>
-
-                    <div>
-                        <label className='label'>
-                            <span className='text-base label-text'>Password</span>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Password
                         </label>
                         <input
-                            type='password'
-                            placeholder='Enter Password'
-                            className='w-full input input-bordered h-10'
-                            name='password'
+                            type="password"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Enter your Password"
+                            name="password"
                             value={inputs.password}
                             onChange={handleChange}
                         />
                     </div>
-
-                    <div>
-                        <label className='label'>
-                            <span className='text-base label-text'>Confirm Password</span>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Confirm Password
                         </label>
                         <input
-                            type='password'
-                            placeholder='Confirm Password'
-                            className='w-full input input-bordered h-10'
-                            name='confirmPassword'
+                            type="password"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Confirm your Password"
+                            name="confirmPassword"
                             value={inputs.confirmPassword}
                             onChange={handleChange}
                         />
                     </div>
-
-                    <div>
-                        <label className='label'>
-                            <span className='text-base label-text'>Phone Number</span>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Phone Number
                         </label>
                         <input
-                            type='text'
-                            placeholder='Enter Phone Number'
-                            className='w-full input input-bordered h-10'
-                            name='phone_number'
+                            type="text"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Enter your Phone Number"
+                            name="phone_number"
                             value={inputs.phone_number}
                             onChange={handleChange}
                         />
                     </div>
-
-                    <div>
-                        <label className='label'>
-                            <span className='text-base label-text'>Location</span>
-                        </label>
-                        <select
-                            className='w-full input input-bordered h-10'
-                            name='location'
-                            value={inputs.location}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select Location</option>
-                            {/* Render options dynamically based on locations data */}
-                            {locations.map((location) => (
-                                <option key={location._id} value={location._id}>
-                                    {location.city_name} {/* Use city_name as the option text */}
-                                </option>
-                            ))}
-                        </select>
-
-                    </div>
-                    
-                    <div>
-                        <label className='label'>
-                            <span className='text-base label-text'>Email Address</span>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Email
                         </label>
                         <input
-                            type='email'
-                            placeholder='Enter Your Email address'
-                            className='w-full input input-bordered h-10'
-                            name='email'
+                            type="email"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Enter your email"
+                            name="email"
                             value={inputs.email}
                             onChange={handleChange}
                         />
                     </div>
-
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Location
+                        </label>
+                        <select
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            name="location"
+                            value={inputs.location}
+                            onChange={handleChange}
+                        >
+                            <option value="">Select Location</option>
+                            {locations.map((location) => (
+                                <option key={location._id} value={location._id}>
+                                    {location.city_name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
-
-                    <Link
-                        to={"/login"}
-                        className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'
-                        href='#'
-                    >
-                        Already have an account?
-                    </Link>
-
-                    <div>
-                        <button className='btn btn-block btn-sm mt-2 border border-slate-700' disabled={loading}>
-                            {loading ? <span className='loading loading-spinner'></span> : "Sign Up"}
+                    <div className="mt-4 flex justify-between items-center">
+                        <Link
+                            to={"/login"}
+                            className="text-sm text-emerald-700 hover:underline"
+                        >
+                            Already have an account?
+                        </Link>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="bg-lime-700 text-white px-4 py-2 rounded-md focus:outline-none focus:bg-lime-700 hover:bg-lime-500"
+                        >
+                            {loading ? "Signing Up..." : "Sign Up"}
                         </button>
                     </div>
                 </form>
