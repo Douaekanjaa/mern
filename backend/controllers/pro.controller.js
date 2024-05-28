@@ -156,4 +156,29 @@ const updatePro = async (req, res) => {
 };
 
 
-export { registerPro, loginPro, logoutPro, updatePro };
+const getProById = async (req, res) => {
+    try {
+        const proId = req.params.id;
+        const pro = await Pro.findById(proId)
+            .populate({
+                path: 'location_id',
+                select: 'city_name'
+            })
+            .populate({
+                path: 'categories',
+                select: 'name'
+            });
+
+        if (!pro) {
+            return res.status(404).json({ message: 'Pro not found' });
+        }
+
+        res.json(pro);
+    } catch (error) {
+        console.error("Error in getProById controller:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
+export { registerPro, loginPro, logoutPro, updatePro, getProById };

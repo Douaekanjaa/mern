@@ -7,8 +7,8 @@ const Hero = () => {
   };
 
   return (
-    <div className=' ' style={{ height: "455px !important"  }}>
-      <section className="bg-lime-100 w-screen" style={{ height: "450px" }}>
+    <div className='hero-2 my-4' style={{ height: "455px !important"  }}>
+      <section className=" w-screen" style={{ height: "450px" }}>
   <div className="p-8 w-screen md:p-12 lg:px-16 lg:py-24">
     <div className="mx-auto max-w-lg  text-center">
       <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">

@@ -13,6 +13,7 @@ import locationRoutes from "./routes/location.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import proRoutes from "./routes/pro.routes.js";
 import taskRoutes from "./routes/task.routes.js";
+import bookingRoutes from "./routes/booking.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import { app, server } from "./socket/socket.js";
@@ -47,6 +48,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/location", locationRoutes);
 app.use("/api/category", categoryRoutes);
 app.use('/api/pros', proRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 app.use("/api/tasks", taskRoutes);
 

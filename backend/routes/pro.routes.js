@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { registerPro, loginPro, logoutPro, updatePro } from '../controllers/pro.controller.js';
+import { registerPro, loginPro, logoutPro, updatePro, getProById } from '../controllers/pro.controller.js';
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.post('/logout', logoutPro);
 
 router.put('/update', upload.fields([{ name: 'photo', maxCount: 1 }, { name: 'coverPhoto', maxCount: 1 }]), updatePro);
 
-
+router.get('/:id', getProById);
 
 
 export default router;

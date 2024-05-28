@@ -17,9 +17,9 @@ const ProNav = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
-                        <NavLink to="/" className="flex-shrink-0 text-xl font-bold text-lime-600">
-                            TaskPro
-                        </NavLink>
+                        <a className="block  " href="/">
+                            <img src="../public/images/logo.png" className="w-36  h-21" alt="" />
+                        </a>
                     </div>
                     <div className="hidden md:flex items-center space-x-4 ml-auto">
                         <NavLink to="/tasks" className="text-gray-800 hover:text-lime-600 px-6 py-2 rounded-md text-sm font-medium">

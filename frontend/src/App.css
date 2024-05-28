@@ -5,10 +5,10 @@ body{
 }
 
 .no-hover:hover {
-     color: inherit !important; /* To maintain the default text color */
-     background-color: transparent !important; /* To remove any background color */
-     pointer-events: none !important; /* To disable pointer events */
-     cursor: default !important; /* To change the cursor to default */
+     color: inherit !important;
+     background-color: transparent !important;
+     pointer-events: none !important;
+     cursor: default !important; 
  }
  
 
@@ -217,3 +217,9 @@ width: 80% !important;
   
   }
   
+  .hero-2{
+  background-image: url("/images/hero22.png") !important;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
