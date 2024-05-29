@@ -24,7 +24,7 @@ useEffect(() => {
         try {
           if (authUser && authUser.categories && authUser.categories.length > 0) {
             const categoryIds = authUser.categories.map((category) => category._id);
-            console.log('Category IDs:', categoryIds); // Add this line to log category IDs
+            console.log('Category IDs:', categoryIds);
             const response = await axios.post('/api/category/filter', { categoryIds });
             setFilteredCategories(response.data);
           } else {
@@ -38,7 +38,7 @@ useEffect(() => {
       };
       
   
-    if (authUser && authUser.categories) { // Check if authUser and categories are populated
+    if (authUser && authUser.categories) {
       setFormData({ ...authUser });
       fetchCategories();
     }
@@ -87,17 +87,17 @@ useEffect(() => {
     <div className="min-h-screen bg-gray-100 flex w-full">
       <main className="flex-1 p-6 w-full max-w-4xl mx-auto">
         <div className="flex justify-between items-center">
-          <span className="text-2xl font-bold text-gray-800">
+          {/* <span className="text-2xl font-bold text-gray-800">
             Welcome, {authUser ? `${authUser.first_name} ${authUser.last_name}` : 'Guest'}
-          </span>
-          {!isEditing && (
+          </span> */}
+          {/* {!isEditing && (
             <button
               onClick={() => setIsEditing(true)}
               className="px-4 py-2 bg-lime-600 hover:bg-lime-700 text-white rounded-md transition"
             >
               Edit
             </button>
-          )}
+          )} */}
         </div>
         <section className="bg-white p-6 rounded-lg shadow-lg mb-6 mt-6 relative">
           <div
@@ -109,7 +109,7 @@ useEffect(() => {
               src={authUser?.photo}
               alt="Profile"
             />
-            {isEditing && (
+            {/* {isEditing && (
               <>
                 <label
                   htmlFor="coverPhotoUpload"
@@ -125,16 +125,25 @@ useEffect(() => {
                   className="hidden"
                 />
               </>
-            )}
+            )} */}
           </div>
           <div className="mt-16 px-6">
             <h1 className="text-4xl font-bold text-gray-900">{`${authUser?.first_name} ${authUser?.last_name}`}</h1>
-            <p className="text-gray-600 mt-2">{authUser?.bio}</p>
+            <p className="my-10 text-lg text-black ">{authUser?.bio}</p>
             <div className="mt-4 grid grid-cols-2 gap-4">
-              <p><strong>Email:</strong> {authUser?.email}</p>
-              <p><strong>Phone:</strong> {authUser?.phone_number}</p>
-              <p><strong>Address:</strong> {authUser?.address}</p>
-              <p><strong>Rate:</strong> ${authUser?.rate}/hr</p>
+              <p className=' text-gray-800'><strong className=' text-emerald-800 font-bold'>Email:</strong> {authUser?.email}</p>
+              <p className=' text-gray-800'><strong className=' text-emerald-800 font-bold'>Phone:</strong> {authUser?.phone_number}</p>
+              <p className=' text-gray-800'><strong className=' text-emerald-800 font-bold'>Address:</strong> {authUser?.address}</p>
+              <p className=' text-gray-800'><strong className=' text-emerald-800 font-bold'>Rate</strong> 
+  <div class="star-rating flex">
+    <svg class="h-5 w-5" fill="#fae588" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+    <svg class="h-5 w-5" fill="#fae588" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+    <svg class="h-5 w-5" fill="#fae588" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+    <svg class="h-5 w-5" fill="#fae588" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+  </div>
+</p>
+
+              
             </div>
           </div>
         </section>
@@ -245,16 +254,19 @@ useEffect(() => {
         )}
 
         <section className="bg-white p-6 rounded-lg shadow-lg mb-6">
-          <h2 className="text-2xl font-semibold mb-4">Availability</h2>
-          <ul className="list-disc list-inside text-gray-700">
-            {authUser?.availability.map((slot, index) => (
-              <li key={index}>{`${slot.day}: ${slot.hours}`}</li>
-            ))}
-          </ul>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Availability</h2>
+          <ul className=" list-inside list-none text-gray-700">
+  {authUser?.availability.map((slot, index) => (
+    <li key={index}>
+      {`${slot.day}: ${slot.hours.map(hour => hour.hour).join(', ')}`}
+    </li>
+  ))}
+</ul>
+
         </section>
 
         <section className="bg-white p-6 rounded-lg shadow-lg mb-6">
-          <h2 className="text-2xl font-semibold mb-4">Categories</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Categories</h2>
           <ul className="list-disc list-inside text-gray-700 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
   {isLoadingCategories ? (
     <p>Loading categories...</p>

@@ -46,13 +46,9 @@ const SignUp = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Extract first name from first_name
         const firstName = inputs.first_name;
-        // Extract last name from last_name
         const lastName = inputs.last_name;
-        // Log the inputs object
         console.log("Inputs before signup:", inputs);
-        // Send signup request with all input fields
         await signup({
             first_name: firstName,
             last_name: lastName,
@@ -72,7 +68,7 @@ const SignUp = () => {
 
 
     return (
-        <div className="flex w-screen justify-center items-center min-h-screen bg-gray-100">
+        <div className="flex w-screen justify-center items-center h-screen bg-gray-100">
             <div className="max-w-xl w-full px-6 py-8 bg-white shadow-md rounded-lg">
                 <h1 className="text-3xl font-semibold text-center text-lime-700 mb-8">
                     Sign Up
@@ -104,32 +100,7 @@ const SignUp = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
-                            placeholder="Enter your Password"
-                            name="password"
-                            value={inputs.password}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
-                            placeholder="Confirm your Password"
-                            name="confirmPassword"
-                            value={inputs.confirmPassword}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">
                             Phone Number
@@ -174,7 +145,33 @@ const SignUp = () => {
                             ))}
                         </select>
                     </div>
-                    <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Enter your Password"
+                            name="password"
+                            value={inputs.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+                            placeholder="Confirm your Password"
+                            name="confirmPassword"
+                            value={inputs.confirmPassword}
+                            onChange={handleChange}
+                        />
+                    </div>
+
                     <div className="mt-4 flex justify-between items-center">
                         <Link
                             to={"/login"}

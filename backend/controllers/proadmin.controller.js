@@ -2,7 +2,6 @@ import Pro from "../models/pro.model.js";
 
 const getAllPros = async (req, res) => {
     try {
-      // Fetch professionals with populated data
       const pros = await Pro.find()
         .populate({
           path: 'location_id',
@@ -12,10 +11,8 @@ const getAllPros = async (req, res) => {
           path: 'categories',
           select: 'name'
         })
-        // Add population for desired fields
         .select('first_name last_name email gender date_of_birth phone_number photo');
   
-      // Filter data if necessary (optional)
       const filteredPros = pros.map(pro => ({
         id: pro._id,
         name: `${pro.firstName} ${pro.lastName}`,

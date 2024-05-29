@@ -10,6 +10,8 @@ import ProProfile from "./pages/pro/ProProfile";
 import CatById from "./components/Categories/CatById";
 import Tasks from "./pages/pro/Tasks";
 import BookPro from "./pages/Booking/BookPro";
+import AboutUsPage from "./pages/AboutUs/AboutUsPage";
+
 
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
@@ -30,7 +32,8 @@ function App() {
                 <Route path="/profile" element={<ProProfile />} />
                 <Route path="/category/:categoryId" element={<CatById />} />
                 <Route path="//tasks" element={<Tasks />} />
-                <Route path="/book-pro" element={<BookPro />} /> 
+                <Route path="/book-pro" element={<BookPro />} />
+                <Route path="/aboutus" element={<AboutUsPage />} /> 
                 
             </Routes>
             <Toaster />

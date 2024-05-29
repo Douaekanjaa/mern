@@ -14,14 +14,11 @@ export const signup = async (req, res) => {
         if (password !== confirmPassword) {
             return res.status(400).json({ error: "Passwords don't match" });
         }
-
         const userExists = await User.findOne({ email });
 
         if (userExists) {
             return res.status(400).json({ error: "Email already exists" });
         }
-
-        // HASH PASSWORD HERE
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -35,16 +32,12 @@ export const signup = async (req, res) => {
             gender,
             password: hashedPassword,
             profilePic,
-            location // Assign the location field here
+            location
         });
-
-        // Save the new user to the database
         await newUser.save();
 
-        // Generate JWT token here
         const token = generateTokenAndSetCookie(newUser._id, res);
 
-        // Respond with token and user information
         res.status(201).json({
             token,
             user: {
@@ -55,7 +48,7 @@ export const signup = async (req, res) => {
                 phone_number: newUser.phone_number,
                 gender: newUser.gender,
                 profilePic: newUser.profilePic,
-                location: newUser.location // Include the location in the response
+                location: newUser.location
             }
         });
 
@@ -66,20 +59,17 @@ export const signup = async (req, res) => {
 };
 
 
+
+
 export const login = async (req, res) => {
   try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
-      
-      // Check if user exists and password is correct
       if (!user || !(await bcrypt.compare(password, user.password))) {
           return res.status(400).json({ error: "Invalid email or password" });
       }
 
-      // Generate JWT token
-      const token = generateTokenAndSetCookie(user._id, res); // Assuming generateTokenAndSetCookie returns the token
-      
-      // Respond with token and user information
+      const token = generateTokenAndSetCookie(user._id, res);
       res.status(200).json({
           token,
           user: {
@@ -97,6 +87,11 @@ export const login = async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+
+
+
+
 
 export const logout = (req, res) => {
     try {

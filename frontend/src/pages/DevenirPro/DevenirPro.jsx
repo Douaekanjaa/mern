@@ -94,43 +94,43 @@ const DevenirPro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const formDataToSend = new FormData();
-        Object.keys(formData).forEach((key) => {
-            if (key === "categories") {
-                formData[key].forEach((category, index) => {
-                    formDataToSend.append(`categories[${index}]`, category);
-                });
-            } else if (key === "photo") {
-                formDataToSend.append(key, formData[key]);
-            } else if (key === "availability") {
-                formDataToSend.append(key, JSON.stringify(formData[key])); // Stringify availability
-            } else {
-                formDataToSend.append(key, formData[key]);
-            }
-        });
-
-        const response = await axios.post("http://localhost:3000/api/pros/register", formDataToSend, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-
-        if (response.status === 201) {
-            const loginResponse = await axios.post("http://localhost:3000/api/pros/login", {
-                email: formData.email,
-                password: formData.password
-            });
-            if (loginResponse.status === 200) {
-                navigate("/dashboard");
-            }
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (key === "categories") {
+          formData[key].forEach((category, index) => {
+            formDataToSend.append(`categories[${index}]`, category);
+          });
+        } else if (key === "photo") {
+          formDataToSend.append(key, formData[key]);
+        } else if (key === "availability") {
+          formDataToSend.append(key, JSON.stringify(formData[key]));
+        } else {
+          formDataToSend.append(key, formData[key]);
         }
-    } catch (error) {
-        console.log(formData.availability);
-        console.log(JSON.stringify(formData.availability));
+      });
 
-        console.error("Registration error:", error.message, error.response?.data);
+      const response = await axios.post("http://localhost:3000/api/pros/register", formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.status === 201) {
+        const loginResponse = await axios.post("http://localhost:3000/api/pros/login", {
+          email: formData.email,
+          password: formData.password
+        });
+        if (loginResponse.status === 200) {
+          navigate("/profile");
+        }
+      }
+    } catch (error) {
+      console.log(formData.availability);
+      console.log(JSON.stringify(formData.availability));
+
+      console.error("Registration error:", error.message, error.response?.data);
     }
-};
+  };
 
 
 
@@ -143,47 +143,47 @@ const DevenirPro = () => {
   };
 
   return (
-   <div className="w-screen h-screen devenirprobackground ">
-     <div className=" bg hd w-screen my-7 mx-auto p-6 px-20 rounded-lg  devenirprobackground2 shadow-2xl">
-      <h1 className="text-2xl font-bold text-center mb-6">Become a Pro</h1>
-      <div className="flex hd justify-center mx-auto mb-6 ">
-        <Stepper currentStep={currentStep} />
+    <div className="w-screen h-screen devenirprobackground ">
+      <div className=" bg hd w-screen my-7 mx-auto p-6 px-20 rounded-lg  devenirprobackground2 shadow-2xl">
+        <h1 className="text-2xl font-bold text-center text-emerald-800 mb-6">Become a Pro</h1>
+        <div className="flex hd justify-center mx-auto mb-6 ">
+          <Stepper currentStep={currentStep} />
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-4 ">
+          {currentStep === 1 && (
+            <Step1
+              formData={formData}
+              handleChange={handleChange}
+              prevStep={prevStep}
+              nextStep={nextStep}
+            />
+          )}
+          {currentStep === 2 && (
+            <Step2
+              formData={formData}
+              handleChange={handleChange}
+              locations={locations}
+              prevStep={prevStep}
+              nextStep={nextStep}
+            />
+          )}
+          {currentStep === 3 && (
+            <Step3
+              formData={formData}
+              handleChange={handleChange}
+              handleCategoryChange={handleCategoryChange}
+              categories={categories}
+              handleAvailabilityChange={handleAvailabilityChange}
+              handleNotAvailableChange={handleNotAvailableChange}
+              prevStep={prevStep}
+              nextStep={nextStep}
+              handleSubmit={handleSubmit}
+            />
+          )}
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="space-y-4 ">
-        {currentStep === 1 && (
-          <Step1
-            formData={formData}
-            handleChange={handleChange}
-            prevStep={prevStep}
-            nextStep={nextStep}
-          />
-        )}
-        {currentStep === 2 && (
-          <Step2
-            formData={formData}
-            handleChange={handleChange}
-            locations={locations}
-            prevStep={prevStep}
-            nextStep={nextStep}
-          />
-        )}
-        {currentStep === 3 && (
-         <Step3
-         formData={formData}
-         handleChange={handleChange}
-         handleCategoryChange={handleCategoryChange}
-         categories={categories}
-         handleAvailabilityChange={handleAvailabilityChange}
-         handleNotAvailableChange={handleNotAvailableChange}
-         prevStep={prevStep}
-         nextStep={nextStep}
-         handleSubmit={handleSubmit} 
-       />
-        )}
-      </form>
+
     </div>
-  
-   </div>
   );
 };
 
@@ -192,13 +192,12 @@ const Stepper = ({ currentStep }) => (
     {[1, 2, 3].map((step) => (
       <div
         key={step}
-        className={`w-8 h-8 flex items-center justify-center rounded-full ${
-          currentStep === step ? "bg-lime-700 text-white" : "bg-gray-200 text-gray-500"
-        }`}
+        className={`w-8 h-8 flex items-center justify-center rounded-full ${currentStep === step ? "bg-emerald-800 text-white" : "bg-gray-200 text-gray-500"
+          }`}
       >
         {step}
       </div>
-      
+
     ))}
   </div>
 );
@@ -241,7 +240,7 @@ const Step1 = ({ formData, handleChange, prevStep, nextStep }) => (
         value="female"
         checked={formData.gender === "female"}
         onChange={handleChange}
-        className="mr-2 ml-9"
+        className="mr-2 ml-9 "
       />
       <label htmlFor="female" className="text-zinc-800">Female</label>
     </div>
@@ -272,13 +271,13 @@ const Step1 = ({ formData, handleChange, prevStep, nextStep }) => (
       className="w-full p-2 border border-gray-300 rounded"
       required
     />
-   
+
 
     <div className="flex justify-between">
       <button type="button" onClick={prevStep} className="w-1/3 p-2 bg-gray-400 text-white rounded hover:bg-gray-500">
         Previous
       </button>
-      <button type="button" onClick={nextStep} className="w-1/3 p-2 bg-lime-800 text-white rounded hover:bg-lime-700">
+      <button type="button" onClick={nextStep} className="w-1/3 p-2 bg-emerald-800 text-white rounded hover:bg-emerald-600">
         Next
       </button>
     </div>
@@ -339,7 +338,7 @@ const Step2 = ({ formData, handleChange, locations, prevStep, nextStep }) => (
       <button type="button" onClick={prevStep} className="w-1/3 p-2 bg-gray-400 text-white rounded hover:bg-gray-500">
         Previous
       </button>
-      <button type="button" onClick={nextStep} className="w-1/3 p-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      <button type="button" onClick={nextStep} className="w-1/3 p-2 bg-emerald-800 text-white rounded hover:bg-emerald-600">
         Next
       </button>
     </div>
@@ -417,13 +416,12 @@ const Step3 = ({ formData, handleChange, handleCategoryChange, categories, handl
       <button type="button" onClick={prevStep} className="w-1/3 p-2 bg-gray-400 text-white rounded hover:bg-gray-500">
         Previous
       </button>
-      <button type="submit"  className="w-1/3 p-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-          Register
+      <button type="submit" className="w-1/3 p-2 bg-emerald-800 text-white rounded hover:bg-emerald-600">
+        Register
       </button>
 
     </div>
   </>
-  );
-  
-  export default DevenirPro;
-  
+);
+
+export default DevenirPro;

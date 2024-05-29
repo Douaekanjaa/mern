@@ -260,10 +260,6 @@ const CategoryDetails = () => {
                     <div>
                         {tasks.map(task => (
                             <div key={task._id} className="border p-6 mb-6 rounded-lg shadow-md">
-                                <h3 className="text-xl font-semibold mb-4">{task.title}</h3>
-                                <p>{task.description}</p>
-                                <p>Price: {task.price} per hour</p>
-
                                 {proDetailsMap[task.pro_id] && (
                                     <div className="mt-4">
                                         <h4 className="text-lg font-semibold">Tasker Details:</h4>
@@ -271,14 +267,18 @@ const CategoryDetails = () => {
                                         <p className="mt-2"><strong>Name:</strong> {proDetailsMap[task.pro_id].first_name} {proDetailsMap[task.pro_id].last_name}</p>
 
                                         <p className="mt-2"><strong>Bio:</strong> {proDetailsMap[task.pro_id].bio}</p>
-                                        <p className="mt-2"><strong>Bio:</strong> {proDetailsMap[task.pro_id].email}</p>
                                     </div>
                                 )}
+                                <h3 className="text-xl font-semibold mb-4 text-lime-800">{task.title}</h3>
+                                <p>{task.description}</p>
+                                <p><strong>Price:</strong> {task.price} per hour</p>
+
+                                
                                 <button onClick={() => handleBookTask(task)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
                                     Book Task
                                 </button>
                             </div>
-                        ))}
+                        ))} 
                     </div>
                 </div>
             </div>

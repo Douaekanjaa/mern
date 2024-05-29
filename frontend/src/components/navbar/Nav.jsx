@@ -34,14 +34,14 @@ const Nav = () => {
                         <nav aria-label="Global">
                             <ul className="flex items-center gap-6 text-sm">
                                 <li className="md:mx-2 ">
-                                    <a className="text-gray-800 transition hover:text-gray-500/75" href="#"> Home </a>
+                                    <a className="text-gray-800 transition hover:text-gray-500/75" href="/"> Home </a>
                                 </li>
 
                                 <li className="md:mx-2 ">
                                     <a className="text-gray-800 transition hover:text-gray-500/75" href="#"> Services </a>
                                 </li>                
                                 <li className="md:mx-2 ">
-                                    <a className="text-gray-800 transition hover:text-gray-500/75" href="#"> About US </a>
+                                    <a className="text-gray-800 transition hover:text-gray-500/75" href="/aboutus"> About US </a>
                                 </li>
                                 <li className="md:mx-2 ">
                                     <a className="text-gray-800 transition hover:text-gray-500/75" href="#"> Contact US </a>
@@ -105,14 +105,14 @@ const Nav = () => {
                 <nav aria-label="Global" className="md:hidden">
                     <ul className="mt-4 space-y-2 px-4 text-sm">
                         <li>
-                            <a className="block text-gray-800 transition hover:text-gray-700" href="#"> Home </a>
+                            <a className="block text-gray-800 transition hover:text-gray-700" href="/"> Home </a>
                         </li>
 
                         <li>
                             <a className="block text-gray-800 transition hover:text-gray-700" href="#"> Services </a>
                         </li>
                         <li>
-                            <a className="block text-gray-800 transition hover:text-gray-700" href="#"> About US </a>
+                            <a className="block text-gray-800 transition hover:text-gray-700" href="/aboutus"> About US </a>
                         </li>
                         <li>
                             <a className="block text-gray-800 transition hover:text-gray-700" href="#"> Contact US </a>

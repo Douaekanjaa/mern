@@ -21,21 +21,9 @@ const upload = multer({ storage });
 const registerPro = async (req, res) => {
   try {
       const {
-          first_name,
-          last_name,
-          email,
-          password,
-          confirmPassword,
-          location_id,
-          phone_number,
-          photo,
-          categories,
-          availability,
-          cv,
-          date_of_birth,
-          address,
-          bio,
-          gender
+          first_name, last_name, email, password, confirmPassword, location_id,
+          phone_number, photo, categories, availability, cv, date_of_birth, address,
+          bio, gender
       } = req.body;
 
       if (password !== confirmPassword) {
@@ -61,24 +49,14 @@ const registerPro = async (req, res) => {
       }
 
       const newPro = new Pro({
-          first_name,
-          last_name,
-          email,
-          gender,
-          password: hashedPassword,
-          location_id,
-          phone_number,
+          first_name, last_name, email, gender, password: hashedPassword,
+          location_id, phone_number,
           photo: photoUrl,
           categories: parsedCategories,
-          bio,
-          address,
+          bio, address, cv, date_of_birth,
           availability: parsedAvailability,
-          date_of_birth,
-          cv
       });
-
       await newPro.save();
-
       res.status(201).json({ message: "Pro signup successful" });
   } catch (error) {
       console.error("Error in proSignup controller:", error.message);
@@ -119,7 +97,7 @@ const updatePro = async (req, res) => {
     }
 
     if (availability) {
-        updatedFields.availability = JSON.parse(availability); // Assuming availability is passed as a JSON string
+        updatedFields.availability = JSON.parse(availability);
     }
 
     if (req.files) {
@@ -148,7 +126,6 @@ const updatePro = async (req, res) => {
                 select: 'name'
             });
 
-        // Return the populated user object
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
