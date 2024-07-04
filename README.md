@@ -1,7 +1,7 @@
 
 # 🛠️ Bricole 🌟
 
-<p>Bricole is a modern and efficient web platform designed as part of my final year project. This platform leverages a diverse array of tools and technologies to deliver a seamless user experience.</p>
+<p>Bricole is a versatile online platform designed to connect users with local service providers. Whether users are seeking essential tasks like house cleaning, plumbing, or specialized services such as painting and electrical work, Bricole offers a streamlined experience. With intuitive search functionalities and robust user profiles, individuals can easily find and connect with skilled professionals in their area. Bricole ensures efficiency through multi-validation filters, allowing users to refine their search based on service category, location, and specific project requirements. This platform also facilitates secure communication and seamless transaction processing, ensuring a reliable and convenient service experience for both users and service providers alike.</p>
 
 ## Technologies Used 🛠️
 
