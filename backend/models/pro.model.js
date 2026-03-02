@@ -13,7 +13,7 @@ const ProSchema = new mongoose.Schema({
         ref: 'Location' // Reference the Location model
     },
     phone_number: { type: String, required: true },
-    photo: { type: String, required: true },
+    photo: { type: String},
     bio: { type: String },
     categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
     availability: [{
@@ -23,7 +23,7 @@ const ProSchema = new mongoose.Schema({
           available: Boolean
         }]
     }],
-    cv: { type: String, required: true },
+    cv: { type: String },
     rate: { type: Number, default: 0 }
 });
 

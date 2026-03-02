@@ -13,7 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3000/api/pros/login", { email, password });
+            const response = await axios.post("http://localhost:5000/api/pros/login", { email, password });
             login(response.data.user);
             if (response.status === 200) {
                 navigate("/profile");

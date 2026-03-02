@@ -31,7 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'backend', 'uploads')));
 
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001', `http://localhost:${PORT}`], // Allow multiple origins (replace PORT with Postman's port if fixed)
+    origin: ['http://localhost:3000', 'http://localhost:3001', `http://localhost:${PORT}`, 'http://localhost:5173'], // Allow multiple origins (replace PORT with Postman's port if fixed)
 }));
 
 
