@@ -11,14 +11,11 @@ function Footer() {
                             <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
                         </svg>
                     </a>
-                    {/* Add other social icons similarly */}
                 </div>
             </div>
 
-            {/* Main container div */}
             <div className="mx-6 py-10 text-center md:text-left">
                 <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                    {/* TW Elements section */}
                     <div>
                         <h6 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
                             <span className="me-3 [&>svg]:h-4 [&>svg]:w-4">
@@ -32,7 +29,6 @@ function Footer() {
                             Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </p>
                     </div>
-                    {/* Products section */}
                     <div>
                         <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
                             Products
@@ -40,9 +36,7 @@ function Footer() {
                         <p className="mb-4">
                             <a href="#!">Angular</a>
                         </p>
-                        {/* Add other product links similarly */}
                     </div>
-                    {/* Useful links section */}
                     <div>
                         <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
                             Useful links
@@ -50,9 +44,7 @@ function Footer() {
                         <p className="mb-4">
                             <a href="#!">Pricing</a>
                         </p>
-                        {/* Add other useful links similarly */}
                     </div>
-                    {/* Contact section */}
                     <div>
                         <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
                             Contact
@@ -66,12 +58,10 @@ function Footer() {
                             </span>
                             New York, NY 10012, US
                         </p>
-                        {/* Add other contact details similarly */}
                     </div>
                 </div>
             </div>
 
-            {/* Copyright section */}
             <div className="bg-black/5 p-6 text-center">
                 <span>© 2023 Copyright:</span>
                 <a className="font-semibold" href="https://tw-elements.com/">TW Elements</a>
