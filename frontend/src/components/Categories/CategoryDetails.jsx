@@ -41,9 +41,8 @@ const CategoryDetails = () => {
                 const tasksData = response.data;
                 setTasks(tasksData);
 
-                // Fetch pro details for each task
                 const proDetailsPromises = tasksData
-                    .filter(task => task.pro_id)  // Ensure pro_id is not null or undefined
+                    .filter(task => task.pro_id) 
                     .map(task =>
                         axios.get(`http://localhost:5000/api/pros/${task.pro_id}`).then(res => ({ [task.pro_id]: res.data }))
                     );
@@ -72,7 +71,9 @@ const CategoryDetails = () => {
 
         fetchLocations();
     }, []);
-
+    const handleImageClick = (proId) => {
+        navigate(`/profile2/${proId}`);
+    };
     const handleFilterChange = (filterName, value) => {
         setFilters(prevFilters => ({
             ...prevFilters,
@@ -85,7 +86,7 @@ const CategoryDetails = () => {
     }
 
     const handleBookTask = (task) => {
-        navigate(`/book-pro?taskId=${task._id}&categoryId=${categoryId}&price=${task.price}&proId=${task.pro_id}&userId=${authUser._id}`);
+        navigate(`/book-pro?taskId=${task._id}&taskdescription=${task.description}&categoryId=${categoryId}&price=${task.price}&proId=${task.pro_id}&userId=${authUser._id}`);
     };
 
     return (
@@ -260,25 +261,36 @@ const CategoryDetails = () => {
                     <div>
                         {tasks.map(task => (
                             <div key={task._id} className="border p-6 mb-6 rounded-lg shadow-md">
-                                {proDetailsMap[task.pro_id] && (
-                                    <div className="mt-4">
-                                        <h4 className="text-lg font-semibold">Tasker Details:</h4>
-                                        <img src={proDetailsMap[task.pro_id].photo} alt={`${proDetailsMap[task.pro_id].first_name} ${proDetailsMap[task.pro_id].last_name}`} className="w-16 h-16 rounded-full mt-4" />
-                                        <p className="mt-2"><strong>Name:</strong> {proDetailsMap[task.pro_id].first_name} {proDetailsMap[task.pro_id].last_name}</p>
+                                
 
-                                        <p className="mt-2"><strong>Bio:</strong> {proDetailsMap[task.pro_id].bio}</p>
+                                {proDetailsMap[task.pro_id] && (
+                                <div>
+                                    <h4 className="text-lg font-semibold">Tasker Details:</h4>
+                                
+                                    <div className="mt-4 flex flex-row">
+                                    <img 
+                                                src={proDetailsMap[task.pro_id].photo} 
+                                                alt={`${proDetailsMap[task.pro_id].first_name} ${proDetailsMap[task.pro_id].last_name}`} 
+                                                className="w-44 h-40 me-9 mt-4" 
+                                                onClick={() => handleImageClick(task.pro_id)}
+                                                style={{ cursor: 'pointer' }}
+                                            />
+                                        <div className='flex flex-col ms-16'>
+                                           <p className="mt-2"><strong>Name:</strong> {proDetailsMap[task.pro_id].first_name} {proDetailsMap[task.pro_id].last_name}</p>
+
+                                           <p className="mt-2"><strong>Bio:</strong> {proDetailsMap[task.pro_id].bio}</p>
+                                        </div>
+                                    </div>
                                     </div>
                                 )}
-                                <h3 className="text-xl font-semibold mb-4 text-lime-800">{task.title}</h3>
+                                <h3 className="text-xl font-semibold mb-4">{task.title}</h3>
                                 <p>{task.description}</p>
-                                <p><strong>Price:</strong> {task.price} per hour</p>
-
-                                
+                                <p>Price: {task.price} per hour</p>
                                 <button onClick={() => handleBookTask(task)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
                                     Book Task
                                 </button>
                             </div>
-                        ))} 
+                        ))}
                     </div>
                 </div>
             </div>

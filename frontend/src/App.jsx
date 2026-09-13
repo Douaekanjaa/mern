@@ -11,7 +11,7 @@ import CatById from "./components/Categories/CatById";
 import Tasks from "./pages/pro/Tasks";
 import BookPro from "./pages/Booking/BookPro";
 import AboutUsPage from "./pages/AboutUs/AboutUsPage";
-
+import Profile2 from "./pages/Profil/Profil2";
 
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
@@ -30,6 +30,7 @@ function App() {
                 <Route path="/become-a-pro" element={<DevenirPro />} />
                 <Route path="/pro-login" element={<LoginPro />} />
                 <Route path="/profile" element={<ProProfile />} />
+                <Route path="/profile2/:proId" element={<Profile2 />} /> 
                 <Route path="/category/:categoryId" element={<CatById />} />
                 <Route path="//tasks" element={<Tasks />} />
                 <Route path="/book-pro" element={<BookPro />} />

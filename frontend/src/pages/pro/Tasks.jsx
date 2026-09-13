@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProNav from '../../components/Pro/ProNav';
@@ -14,7 +13,7 @@ export default function Tasks() {
   const [price, setPrice] = useState('');
   const [duration, setDuration] = useState('');
   const [tasks, setTasks] = useState([]);
-  const { authUser, login } = useAuthProContext();  //get the id of the auth pro by authUser._id
+  const { authUser } = useAuthProContext();  //get the id of the auth pro by authUser._id
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -51,7 +50,7 @@ export default function Tasks() {
     } catch (error) {
       console.error('Error fetching tasks:', error.message);
       setError('Failed to fetch tasks. Please try again.');
-    } finally { 
+    } finally {
       setLoading(false);
     }
   };
@@ -96,112 +95,126 @@ export default function Tasks() {
       setLoading(false);
     }
   };
-  
-  
 
   return (
-    <div className='w-screen h-screen'>
-      <ProNav /> <br /> <br />
-      <h1>Add Task</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="category">Category:</label>
-          <select
-            id="category"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            required
+    <div className="min-h-screen w-screen bg-gray-100 p-4">
+      <ProNav />
+      <div className="max-w-4xl mx-auto mt-8 bg-white p-6 rounded shadow">
+        <h1 className="text-2xl font-semibold mb-6">Add Task</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="mt-1 p-2 block w-full border border-gray-300 rounded"
+              placeholder="Enter task title"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              className="mt-1 p-2 block w-full border border-gray-300 rounded"
+              placeholder="Enter task description"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+            <select
+              id="category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              required
+              className="mt-1 p-2 block w-full border border-gray-300 rounded"
+            >
+              <option value="">Select category</option>
+              {categoryOptions.map((category) => (
+                <option key={category._id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
+            <select
+              id="location"
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
+              required
+              className="mt-1 p-2 block w-full border border-gray-300 rounded"
+            >
+              <option value="">Select location</option>
+              {locationOptions.map((location) => (
+                <option key={location._id} value={location.city_name}>
+                  {location.city_name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
+            <input
+              id="price"
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+              className="mt-1 p-2 block w-full border border-gray-300 rounded"
+              placeholder="Enter price per hour"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="duration" className="block text-sm font-medium text-gray-700">Duration</label>
+            <input
+              id="duration"
+              type="number"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+              required
+              className="mt-1 p-2 block w-full border border-gray-300 rounded"
+              placeholder="Enter duration in hours"
+            /> 
+            <span className="text-sm text-gray-500 mx-2">Hours</span>
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
           >
-            <option value="">Select category</option>
-            {categoryOptions.map((category) => (
-              <option key={category._id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="location">Location:</label>
-          <select
-            id="location"
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-            required
-          >
-            <option value="">Select location</option>
-            {locationOptions.map((location) => (
-              <option key={location._id} value={location.name}>
-                {location.city_name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="price">Price:</label>
-          <input
-            id="price"
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="duration">Duration:</label>
-          <input
-            id="duration"
-            type="number"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            required
-          /> <span  className=' mx-5'>Hours</span>
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Adding Task...' : 'Add Task'}
-        </button>
-        {error && <p>{error}</p>}
-      </form>
-
-      <h1>Tasks</h1>
-      {loading ? (
-        <p>Loading tasks...</p>
-      ) : (
-        <ul>
-          {tasks.map((task) => (
-            <li key={task._id}>
-              <h3>{task.title}</h3>
-              <p>Description: {task.description}</p>
-              <p>Category: {task.category}</p>
-              <p>Location: {task.location}</p>
-              <p>Price: {task.price}</p>
-              <p>Date: {task.date}</p>
-              <p>Duration: {task.duration}</p> hr
-              <p>Status: {task.status}</p>
-              <p>Status: {task.status}</p>
+            {loading ? 'Adding Task...' : 'Add Task'}
+          </button>
+          {error && <p className="text-red-500 mt-2">{error}</p>}
+        </form>
+      </div>
+      <div className="max-w-4xl mx-auto mt-8 bg-white p-6 rounded shadow">
+        <h1 className="text-2xl font-semibold mb-6">Tasks</h1>
+        {loading ? (
+          <p>Loading tasks...</p>
+        ) : (
+          <ul>
+            {tasks.map((task) => (
+              <li key={task._id} className="mb-4 p-4 border-b border-gray-200">
+                <h3 className="text-lg font-semibold">{task.title}</h3>
+                <p className="text-sm text-gray-700"><strong>Description:</strong> {task.description}</p>
+                <p className="text-sm text-gray-700"><strong>Category:</strong> {task.category}</p>
+                <p className="text-sm text-gray-700"><strong>Location:</strong> {task.location}</p>
+                <p className="text-sm text-gray-700"><strong>Price:</strong> {task.price}</p>
+                <p className="text-sm text-gray-700"><strong>Date:</strong> {task.date}</p>
+                <p className="text-sm text-gray-700"><strong>Duration:</strong> {task.duration} hours</p>
+                <p className="text-sm text-gray-700"><strong>Status:</strong> {task.status}</p>
               </li>
             ))}
           </ul>
         )}
       </div>
-    );
-  }
-  
+    </div>
+  );
+}
